@@ -7,7 +7,7 @@ module Guard
   class WebPacker < Plugin
     DEFAULT_PATH = 'bin'
     WEBPACK_DEV_SERVER = 'webpack-dev-server'
-    WEBPACKER = 'webpack'
+    WEBPACK = 'webpack'
     DEFAULT_SIGNAL = :TERM
 
     def initialize(options = {})
@@ -15,7 +15,7 @@ module Guard
 
       @pid = nil
       @path = options[:path] || DEFAULT_PATH
-      @bin = options[:bin] || WEBPACKE_DEV_SERVER
+      @bin = options[:bin] || WEBPACK_DEV_SERVER
       @stop_signal = options[:stop_signal] || DEFAULT_SIGNAL
     end
 
@@ -76,7 +76,7 @@ module Guard
     def cmd
       command = ["bundle exec #{@path}/#{@bin}"]
 
-      if @bin == WEBPACKER
+      if @bin == WEBPACK
         command << '--watch'                    if @options[:watch]
         command << '--colors'                   if @options[:colors]
         command << '--progress'                 if @options[:progress]
